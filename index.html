@@ -128,17 +128,19 @@
         .ttd-col .title { font-size: 0.78rem; color: var(--text-soft); }
 
         @media (max-width: 600px) {
-            body { padding: 10px 6px 40px; }
-            .paper { padding: 20px 14px; }
+            body { padding: 6px 4px 30px; }
+            .paper { padding: 16px 10px; }
             .kop { flex-direction: column; align-items: flex-start; gap: 10px; }
             .kop-info { text-align: left; }
-            .meta-grid { grid-template-columns: 1fr; padding: 12px !important; }
+            .meta-grid { grid-template-columns: 1fr; padding: 10px !important; }
             .ttd-box { flex-direction: column; gap: 30px; }
             .ttd-col { width: 100%; }
 
-            /* Conversion for doc-table on small mobile screens */
-            .doc-table-wrap { border: none; }
-            .doc-table { min-width: 480px; }
+            /* Optimization for doc-table on small mobile screens */
+            .doc-table-wrap { overflow-x: visible; }
+            .doc-table { width: 100% !important; min-width: 0 !important; table-layout: fixed; }
+            .doc-table th, .doc-table td { padding: 6px 4px; font-size: 0.76rem; word-break: break-word; }
+            .doc-table th { white-space: normal; }
         }
     </style>
 </head>
@@ -199,26 +201,26 @@
         <table class="doc-table">
             <thead>
                 <tr>
-                    <th style="width:100px;">Fase</th>
-                    <th>Cakupan Modul & Fitur</th>
-                    <th style="width:130px;">Keterangan</th>
+                    <th style="width:22%;">Fase</th>
+                    <th style="width:48%;">Cakupan Modul & Fitur</th>
+                    <th style="width:30%;">Keterangan</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Tahap 1</strong><br><small style="color:var(--text-soft)">Aplikasi Internal</small></td>
-                    <td>Modul Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok Opname, Kalkulasi Kargo Otomatis, Manajemen Klaim (DOA), & Jurnal Akuntansi Internal.</td>
-                    <td>Mode Awal: Upload Excel & Opname Periodik (Masa Adaptasi)</td>
+                    <td><strong>Tahap 1</strong><br><small style="color:var(--text-soft)">Internal</small></td>
+                    <td>Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok, Kargo Otomatis, DOA, & Akuntansi.</td>
+                    <td>Mode Awal: Upload Excel & Opname Periodik</td>
                 </tr>
                 <tr>
-                    <td><strong>Tahap 2</strong><br><small style="color:var(--text-soft)">Mesin Bridging</small></td>
-                    <td>Mesin filter data otomatis yang mengolah data internal menjadi format data bersih siap pelaporan pajak.</td>
-                    <td>Pengerjaan Paralel dengan Tahap 1</td>
+                    <td><strong>Tahap 2</strong><br><small style="color:var(--text-soft)">Bridging</small></td>
+                    <td>Mesin filter & konversi otomatis data internal siap pelaporan pajak.</td>
+                    <td>Paralel dengan Tahap 1</td>
                 </tr>
                 <tr>
-                    <td><strong>Tahap 3</strong><br><small style="color:var(--text-soft)">Aplikasi Eksternal</small></td>
-                    <td>Platform khusus Accounting untuk menerbitkan dokumen resmi & laporan keuangan yang aman serta siap audit.</td>
-                    <td>Aplikasi Terpisah Siap Audit</td>
+                    <td><strong>Tahap 3</strong><br><small style="color:var(--text-soft)">Eksternal</small></td>
+                    <td>Platform khusus Accounting untuk penerbitan laporan keuangan resmi siap audit.</td>
+                    <td>Terpisah & Siap Audit</td>
                 </tr>
             </tbody>
         </table>
