@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penawaran Sistem ERP — 7smarts</title>
+    <link rel="icon" type="image/png" href="assets/logo7smarts.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue:       #0099d6;
+            --blue-mid:   #0080b8;
+            --blue-dark:  #005f8e;
+            --blue-pale:  #e8f6fd;
+            --blue-tint:  #f3fbff;
+            --navy:       #0b1d30;
+            --navy-2:     #112437;
+
+            --text-main:  #0b1d30;
+            --text-body:  #2d3748;
+            --text-soft:  #64748b;
+            --text-muted: #94a3b8;
+            --text-xmuted:#bfc9d4;
+
+            --border:     #dde5ef;
+            --border-mid: #c8d8e8;
+            --border-blue:rgba(0,153,214,0.22);
+            --bg:         #f4f7fa;
+            --surface:    #ffffff;
+            --green:      #0a8a62;
+            --green-bg:   #edfaf5;
+
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            font-size: 15px;
+        }
+
+        /* ─── PROGRESS BAR top ─── */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), #00c4f4);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* ─── HEADER STRIP ─── */
+        .top-bar {
+            background: var(--navy);
+            padding: 0 32px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .top-bar img { height: 28px; }
+        .top-bar .doc-id {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.05em;
+        }
+        .top-bar .doc-status {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--blue);
+            background: rgba(0,153,214,0.12);
+            border: 1px solid rgba(0,153,214,0.25);
+            padding: 3px 10px;
+            border-radius: 100px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #0a2946 100%);
+            padding: 64px 32px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            right: -80px; top: -80px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0,153,214,0.13) 0%, transparent 65%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .hero-meta .chip {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.08em;
+        }
+        .hero-meta .sep { color: rgba(255,255,255,0.15); }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: -0.8px;
+            margin-bottom: 14px;
+        }
+        .hero h1 .accent { color: var(--blue); }
+        .hero .subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* ─── STAT STRIP in hero ─── */
+        .stat-strip {
+            display: flex;
+            gap: 0;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(8px);
+        }
+        .stat-item {
+            flex: 1;
+            padding: 16px 20px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+            text-align: center;
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-family: var(--mono);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--blue);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ─── WAVE ─── */
+        .wave { display: block; width: 100%; fill: var(--bg); margin-top: -1px; }
+
+        /* ─── CONTAINER ─── */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 8px 20px 100px;
+        }
+
+        /* ─── SECTION HEADER ─── */
+        .sec-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 44px 0 18px;
+        }
+        .sec-num {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--blue);
+            background: var(--blue-pale);
+            border: 1px solid var(--border-blue);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.06em;
+            flex-shrink: 0;
+        }
+        .sec-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+        }
+        .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+        /* ─── CARD ─── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 12px; bottom: 12px;
+            width: 3px;
+            background: transparent;
+            border-radius: 0 3px 3px 0;
+            transition: background 0.3s;
+        }
+        .card:hover::before { background: var(--blue); }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+        .card .lead {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            line-height: 1.75;
+            margin-bottom: 22px;
+        }
+
+        /* ─── SPEC TABLE (Ruang Lingkup) ─── */
+        .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+        .spec-table thead tr {
+            background: var(--bg);
+            border-bottom: 2px solid var(--border-mid);
+        }
+        .spec-table thead th {
+            font-size: 0.69rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .spec-table thead th:first-child { width: 52px; text-align: center; }
+        .spec-table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+        .spec-table tbody tr:last-child { border-bottom: none; }
+        .spec-table tbody tr:hover { background: var(--blue-tint); }
+        .spec-table td {
+            padding: 13px 12px;
+            font-size: 0.86rem;
+            vertical-align: top;
+        }
+        .spec-table td:first-child {
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .spec-table .col-phase {
+            font-weight: 600;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+        .spec-table .col-phase.b1 { color: var(--blue-dark); }
+        .spec-table .col-phase.b2 { color: #0369a1; }
+        .spec-table .col-phase.b3 { color: #0e7490; }
+        .spec-table .col-desc { color: var(--text-soft); line-height: 1.65; }
+        .spec-table .col-tag {
+            text-align: right;
+            white-space: nowrap;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 100px;
+            border: 1px solid;
+        }
+        .tag.t1 { background: var(--blue-pale); color: var(--blue-dark); border-color: var(--border-blue); }
+        .tag.t2 { background: #e0f2fe; color: #0369a1; border-color: rgba(3,105,161,0.2); }
+        .tag.t3 { background: #ecfeff; color: #0e7490; border-color: rgba(14,116,144,0.2); }
+        .tag.trans { background: #fffbeb; color: #92400e; border-color: rgba(146,64,14,0.2); font-size:0.68rem; }
+
+        /* ─── GANTT TIMELINE ─── */
+        .gantt { width: 100%; border-collapse: collapse; }
+        .gantt thead th {
+            font-size: 0.69rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 6px 6px 10px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .gantt thead th:first-child { text-align: left; width: 140px; }
+        .gantt tbody tr {
+            border-bottom: 1px solid var(--border);
+        }
+        .gantt tbody tr:last-child { border-bottom: none; }
+        .gantt td {
+            padding: 10px 6px;
+            font-size: 0.83rem;
+            vertical-align: middle;
+        }
+        .gantt td:first-child {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.82rem;
+            padding-right: 12px;
+        }
+        .gantt .bar-cell { position: relative; height: 28px; }
+        .gantt .bar {
+            position: absolute;
+            top: 4px;
+            height: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.68rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            color: rgba(255,255,255,0.9);
+        }
+        .bar.phase1  { background: var(--blue);  }
+        .bar.phase-uat1 { background: #0ea5e9; }
+        .bar.phase23 { background: #0369a1; }
+        .bar.phase-uat2 { background: #0e7490; }
+        .bar.uat { background: #22c55e; }
+
+        /* ─── MILESTONE ROW ─── */
+        .milestone-row {
+            display: flex;
+            gap: 0;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .ms-item {
+            flex: 1;
+            padding: 12px 14px;
+            border-right: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .ms-item:last-child { border-right: none; }
+        .ms-month {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--blue);
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .ms-desc { font-size: 0.78rem; color: var(--text-soft); font-weight: 500; }
+
+        /* ─── CHECKLIST GRID ─── */
+        .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+        .check-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-size: 0.84rem;
+            color: var(--text-soft);
+            padding: 8px 10px;
+            background: var(--bg);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        .check-item svg { flex-shrink: 0; margin-top: 2px; }
+
+        /* ─── COMMIT BLOCK ─── */
+        .commit {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            background: var(--surface);
+            border-left: 3px solid var(--border-mid);
+            transition: border-left-color 0.2s;
+        }
+        .commit:hover { border-left-color: var(--blue); }
+        .commit:last-child { margin-bottom: 0; }
+        .commit h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+        .commit p  { font-size: 0.84rem; color: var(--text-soft); line-height: 1.7; }
+        .commit p strong { color: var(--text-main); }
+        .commit p .hl { color: var(--blue-dark); font-weight: 600; }
+
+        /* ─── PRICE BLOCK ─── */
+        .price-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        .price-num {
+            font-family: var(--mono);
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: var(--text-main);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+        .price-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+        .price-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* ─── PAYMENT TABLE ─── */
+        .pay-table { width: 100%; border-collapse: collapse; }
+        .pay-table thead th {
+            font-size: 0.69rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 6px 12px 10px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+        }
+        .pay-table tbody tr { border-bottom: 1px solid var(--border); }
+        .pay-table tbody tr:last-child { border-bottom: none; }
+        .pay-table td { padding: 12px; font-size: 0.86rem; vertical-align: middle; }
+        .pay-table .col-idx {
+            font-family: var(--mono);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            width: 36px;
+        }
+        .pay-table .col-label { font-weight: 600; color: var(--text-main); }
+        .pay-table .col-trigger { color: var(--text-soft); }
+        .pay-table .col-pct {
+            font-family: var(--mono);
+            color: var(--blue-dark);
+            font-weight: 600;
+            text-align: right;
+        }
+        .pay-table .col-amt {
+            font-family: var(--mono);
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: right;
+            white-space: nowrap;
+        }
+        .pay-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* ─── MAINTENANCE ─── */
+        .maint-std { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+        .mchk {
+            display: flex; gap: 9px; align-items: flex-start;
+            font-size: 0.83rem; color: var(--text-soft);
+            padding: 7px 10px;
+            border-radius: 6px;
+            background: var(--green-bg);
+            border: 1px solid rgba(10,138,98,0.12);
+        }
+        .mchk svg { flex-shrink: 0; margin-top: 2px; }
+
+        /* ─── QUOTA BOX ─── */
+        .quota-box {
+            grid-column: 1/-1;
+            border: 1px solid var(--border-blue);
+            background: var(--blue-pale);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 4px;
+        }
+        .quota-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .quota-num {
+            font-family: var(--mono);
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--blue-dark);
+            line-height: 1;
+        }
+        .quota-label {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--blue-dark);
+        }
+        .quota-sub { font-size: 0.75rem; color: var(--text-soft); }
+        .quota-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin-top: 12px;
+        }
+        .qex {
+            font-size: 0.79rem;
+            color: var(--text-soft);
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            padding: 5px 8px;
+            background: rgba(255,255,255,0.65);
+            border-radius: 5px;
+            border: 1px solid rgba(0,153,214,0.1);
+        }
+        .qex-num {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--blue);
+            font-weight: 600;
+            flex-shrink: 0;
+            min-width: 16px;
+        }
+
+        /* ─── PAKET COMPARE ─── */
+        .compare-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .compare-table thead {
+            background: var(--navy);
+        }
+        .compare-table thead th {
+            padding: 12px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-align: left;
+        }
+        .compare-table thead th:nth-child(2),
+        .compare-table thead th:nth-child(3) { text-align: center; }
+        .compare-table thead th.featured { color: var(--blue); }
+        .compare-table tbody tr { border-bottom: 1px solid var(--border); }
+        .compare-table tbody tr:last-child { border-bottom: none; }
+        .compare-table tbody tr:nth-child(even) { background: var(--bg); }
+        .compare-table td {
+            padding: 10px 16px;
+            font-size: 0.83rem;
+            color: var(--text-soft);
+        }
+        .compare-table td:nth-child(2),
+        .compare-table td:nth-child(3) { text-align: center; }
+        .check-y { color: var(--green); font-weight: 700; font-size: 1rem; }
+        .check-n { color: var(--text-xmuted); }
+        .compare-table .row-price td {
+            background: var(--bg);
+            font-family: var(--mono);
+            font-weight: 600;
+            color: var(--blue-dark);
+            font-size: 0.9rem;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-top: 2px solid var(--border-mid);
+        }
+
+        /* ─── GROWTH BOX ─── */
+        .growth {
+            margin-top: 16px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .growth-icon {
+            width: 36px; height: 36px;
+            background: var(--blue-pale);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .growth-body h4 { font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .growth-body p  { font-size: 0.82rem; color: var(--text-soft); line-height: 1.7; }
+        .growth-body p .hl { color: var(--blue-dark); font-weight: 600; }
+
+        /* ─── NOTICE ─── */
+        .notice {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: #78350f;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .notice svg { flex-shrink: 0; margin-top: 1px; }
+
+        /* ─── CTA ─── */
+        .cta-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #0a2d52 100%);
+            border-radius: 12px;
+            padding: 40px 36px;
+            text-align: center;
+            margin-top: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            right: -40px; top: -40px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(0,153,214,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 20px;
+        }
+        .cta-card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blue);
+            color: #fff;
+            border-radius: 8px;
+            padding: 13px 32px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 20px rgba(0,153,214,0.4);
+            transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
+            position: relative;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,153,214,0.5);
+            background: var(--blue-mid);
+        }
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.25);
+            font-family: var(--mono);
+            letter-spacing: 0.05em;
+        }
+
+        /* ─── TABLE SCROLL WRAPPER ─── */
+        .tbl-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .tbl-wrap table { border: none; min-width: 520px; }
+
+        @media (max-width: 640px) {
+            /* Hero */
+            .hero { padding: 40px 16px 56px; }
+            .hero h1 { font-size: 1.55rem; letter-spacing: -0.3px; }
+            .hero .subtitle { font-size: 0.85rem; margin-bottom: 28px; }
+            .hero-meta { flex-wrap: wrap; gap: 6px; }
+
+            /* Stat strip: 2x2 grid */
+            .stat-strip { flex-wrap: wrap; }
+            .stat-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .stat-item:nth-child(1), .stat-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+            .stat-num { font-size: 1.2rem; }
+            .stat-label { font-size: 0.66rem; }
+
+            /* Top bar */
+            .top-bar { padding: 0 16px; }
+            .top-bar .doc-id { display: none; }
+
+            /* Container */
+            .container { padding: 4px 12px 80px; }
+
+            /* Card */
+            .card { padding: 20px 16px; margin-bottom: 12px; }
+            .card h2 { font-size: 1.05rem; }
+            .card .lead { font-size: 0.84rem; margin-bottom: 16px; }
+
+            /* Section head */
+            .sec-head { margin: 32px 0 14px; }
+            .sec-title { font-size: 0.65rem; }
+
+            /* Spec table → card stack on mobile */
+            .spec-table, .spec-table thead, .spec-table tbody,
+            .spec-table th, .spec-table td, .spec-table tr { display: block; }
+            .spec-table thead { display: none; }
+            .spec-table tbody tr {
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 14px;
+                margin-bottom: 10px;
+                background: var(--surface);
+            }
+            .spec-table td { padding: 4px 0; border: none; font-size: 0.83rem; }
+            .spec-table td.col-tag { padding-top: 8px; }
+            .spec-table td:first-child { display: none; }
+
+            /* Gantt → hidden on mobile, milestone row shows instead */
+            .gantt-wrap { display: none; }
+
+            /* Payment table → card stack */
+            .pay-table, .pay-table thead, .pay-table tbody,
+            .pay-table th, .pay-table td, .pay-table tr { display: block; }
+            .pay-table thead { display: none; }
+            .pay-table tbody tr {
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 14px;
+                margin-bottom: 10px;
+                background: var(--surface);
+            }
+            .pay-table td { padding: 4px 0; border: none; font-size: 0.84rem; }
+            .pay-table td:first-child { display: none; }
+            .pay-table .col-pct, .pay-table .col-amt { text-align: left; }
+            .pay-table .col-amt { font-size: 1rem; margin-top: 4px; }
+
+            /* Compare table → stacked rows */
+            .compare-table, .compare-table thead, .compare-table tbody,
+            .compare-table th, .compare-table td, .compare-table tr { display: block; }
+            .compare-table thead { display: none; }
+            .compare-table tbody tr {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid var(--border);
+                padding: 10px 0;
+            }
+            .compare-table tbody tr.row-price {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 0;
+                gap: 6px;
+            }
+            .compare-table td { display: block; padding: 0; border: none; font-size: 0.82rem; flex: 1; }
+            .compare-table td:nth-child(2) { text-align: center; min-width: 28px; flex: 0; }
+            .compare-table td:nth-child(3) { text-align: center; min-width: 28px; flex: 0; }
+            .compare-table .row-price td { text-align: left !important; font-size: 0.82rem; min-width: auto; }
+
+            /* Misc grids */
+            .check-grid { grid-template-columns: 1fr; }
+            .maint-std { grid-template-columns: 1fr; }
+            .quota-examples { grid-template-columns: 1fr; }
+            .quota-box { grid-column: 1; }
+
+            /* Milestone row */
+            .milestone-row { flex-wrap: wrap; }
+            .ms-item { min-width: 50%; }
+
+            /* Price */
+            .price-num { font-size: 2rem; letter-spacing: -1px; }
+            .price-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+            /* CTA */
+            .cta-card { padding: 28px 18px; }
+            .cta-card h2 { font-size: 1.15rem; }
+            .btn { padding: 12px 22px; font-size: 0.84rem; }
+            .footer-note { font-size: 0.65rem; }
+
+            /* Notice */
+            .notice { font-size: 0.8rem; }
+
+            /* Growth box */
+            .growth { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<!-- ── TOP BAR ── -->
+<div class="top-bar">
+    <img src="assets/logo7smarts.png" alt="7smarts">
+    <span class="doc-id">DOC/CB/ERP/2025-07</span>
+    <span class="doc-status">Proposal Aktif</span>
+</div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-meta">
+            <span class="chip">7smarts Technology</span>
+            <span class="sep">·</span>
+            <span class="chip">Proposal Pengembangan ERP</span>
+            <span class="sep">·</span>
+            <span class="chip">Cahaya Baru</span>
+        </div>
+        <h1>Bersama Membangun<br>Sistem yang <span class="accent">Tepat Sasaran</span></h1>
+        <p class="subtitle">Ekosistem ERP Kustom — dirancang khusus untuk operasional dan kepatuhan pajak Cahaya Baru</p>
+
+        <div class="stat-strip">
+            <div class="stat-item">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Fase Sistem</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">~7</div>
+                <div class="stat-label">Bln Pengerjaan</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">12</div>
+                <div class="stat-label">Bln Total Kontrak</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">10</div>
+                <div class="stat-label">Kuota Minor/Bln</div>
+            </div>
+        </div>
+    </div>
+</div>
+<svg class="wave" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,48 C480,0 960,0 1440,48 L1440,48 L0,48 Z"/>
+</svg>
+
+<div class="container">
+
+    <!-- ══ 01. RUANG LINGKUP ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 01</span>
+        <span class="sec-title">Ruang Lingkup Sistem</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Ekosistem ERP 3 Fase</h2>
+        <p class="lead">Sistem ini dirancang khusus untuk memecahkan kompleksitas operasional Cahaya Baru — dari gudang, penjualan ekspor, hingga kepatuhan pajak. Bukan sistem generik, melainkan solusi yang benar-benar memahami cara kerja bisnis Anda.</p>
+
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fase</th>
+                    <th>Cakupan Sistem</th>
+                    <th style="text-align:right">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td class="col-phase b1">Tahap 1<br><small style="font-weight:400;color:var(--text-soft);font-size:0.78rem;">Aplikasi Internal</small></td>
+                    <td class="col-desc">Pembelian · Penjualan Ekspor/Lokal/Mitra · Manajemen Stok · Kalkulasi Kargo Otomatis · Manajemen Klaim (DOA) · Jurnal Akuntansi Internal
+                        <br><span style="display:inline-block;margin-top:6px;font-size:0.78rem;color:var(--text-muted);">⟳ Fase awal: Upload Excel + Stok Opname Periodik — untuk kelancaran adaptasi karyawan</span>
+                    </td>
+                    <td class="col-tag"><span class="tag t1">Prioritas</span></td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td class="col-phase b2">Tahap 2<br><small style="font-weight:400;color:var(--text-soft);font-size:0.78rem;">Filter Bridging</small></td>
+                    <td class="col-desc">Mesin konversi otomatis — mengolah, menyaring, dan memvalidasi data internal menjadi format siap pelaporan pajak</td>
+                    <td class="col-tag"><span class="tag t2">Paralel</span></td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td class="col-phase b3">Tahap 3<br><small style="font-weight:400;color:var(--text-soft);font-size:0.78rem;">Pelaporan Pajak</small></td>
+                    <td class="col-desc">Platform eksternal khusus Accounting — laporan resmi, terlacak, dan siap audit tanpa mencampur data operasional</td>
+                    <td class="col-tag"><span class="tag t3">Final</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ══ 02. TIMELINE ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 02</span>
+        <span class="sec-title">Rencana & Estimasi Waktu</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Timeline Pengerjaan — Estimasi 6–7 Bulan</h2>
+        <p class="lead">Menggunakan metode <strong>Phased Rollout</strong>: Fase 1 dirilis lebih dulu agar operasional harian segera berjalan, sementara ekosistem pajak dibangun paralel.</p>
+
+        <!-- Gantt simple -->
+        <div class="gantt-wrap" style="overflow-x:auto;">
+        <table class="gantt">
+            <thead>
+                <tr>
+                    <th>Aktivitas</th>
+                    <th>Bln 1</th>
+                    <th>Bln 2</th>
+                    <th>Bln 3</th>
+                    <th>Bln 4</th>
+                    <th>Bln 5</th>
+                    <th>Bln 6</th>
+                    <th>Bln 7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dev Tahap 1 (Internal)</td>
+                    <td colspan="3"><div class="bar-cell"><div class="bar phase1" style="left:0;right:0;">Pembangunan Sistem Internal</div></div></td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>UAT + Go-Live Tahap 1</td>
+                    <td></td><td></td><td></td>
+                    <td colspan="1"><div class="bar-cell"><div class="bar phase-uat1" style="left:0;right:0;">UAT & Go-Live</div></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>Dev Tahap 2 & 3</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td colspan="2"><div class="bar-cell"><div class="bar phase23" style="left:0;right:0;">Bridging + Ext. App</div></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UAT + Go-Live Ekosistem</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td colspan="1"><div class="bar-cell"><div class="bar phase-uat2" style="left:0;right:0;">Go-Live Penuh</div></div></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="milestone-row">
+            <div class="ms-item">
+                <div class="ms-month">Bulan 0</div>
+                <div class="ms-desc">Kick Off Meeting & Tanda Tangan</div>
+            </div>
+            <div class="ms-item">
+                <div class="ms-month">Bulan 4</div>
+                <div class="ms-desc">Go-Live Tahap 1 (Operasional)</div>
+            </div>
+            <div class="ms-item">
+                <div class="ms-month">Bulan 7</div>
+                <div class="ms-desc">Go-Live Ekosistem Penuh</div>
+            </div>
+            <div class="ms-item">
+                <div class="ms-month">Maks. 12</div>
+                <div class="ms-desc">Batas Komitmen Kontrak</div>
+            </div>
+        </div>
+
+        <div class="notice">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span><strong>Sprint Review 2 Mingguan:</strong> Evaluasi progress rutin setiap 2 minggu dari kedua pihak. Keterlambatan validasi dari salah satu sisi berdampak langsung pada tanggal Go-Live.</span>
+        </div>
+    </div>
+
+    <!-- ══ 03. KICK OFF ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 03</span>
+        <span class="sec-title">Kick Off Meeting</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Memulai dengan Landasan yang Jelas</h2>
+        <p class="lead">Sebelum satu baris kode ditulis, kita duduk bersama. KOM menghasilkan <strong>Berita Acara (BAK)</strong> yang ditandatangani bersama — dokumen yang menjadi rujukan tunggal selama proyek berlangsung.</p>
+
+        <div class="check-grid">
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Daftar fitur final yang disepakati (point by point)
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                PIC (Person in Charge) dari pihak Cahaya Baru
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Jadwal Sprint Review 2 mingguan
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tanggal resmi mulai (titik awal 12-bulan)
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Mekanisme Addendum untuk pengembangan lanjutan
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tanda tangan & stempel komitmen kedua pihak
+            </div>
+        </div>
+
+        <div style="background:var(--blue-pale);border:1px solid var(--border-blue);border-radius:8px;padding:14px 18px;font-size:0.84rem;color:var(--text-soft);">
+            <strong style="color:var(--blue-dark);">Filosofi kami:</strong> Yang disepakati di Berita Acara, itulah yang kami bangun. Ide baru yang muncul di tengah jalan adalah hal baik — kita catat, evaluasi bersama, dan masukkan ke Addendum berikutnya.
+        </div>
+    </div>
+
+    <!-- ══ 04. KOMITMEN ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 04</span>
+        <span class="sec-title">Komitmen Bersama</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Kejelasan yang Melindungi Kita Berdua</h2>
+        <p class="lead">Kami membangun sistem untuk keberhasilan jangka panjang bisnis Anda. Dua prinsip ini kami jaga bersama sepanjang proyek berlangsung.</p>
+
+        <div class="commit">
+            <h4>📋 &nbsp;Penyesuaian Kecil Itu Wajar. Modul Baru = Diskusi & Addendum.</h4>
+            <p>Koreksi, tweak tampilan, dan penyesuaian alur selama pengerjaan adalah hal yang sangat wajar dan kami tangani dengan senang hati. Namun jika muncul <strong>penambahan modul baru atau fitur berskala besar</strong> di luar ruang lingkup awal, kita duduk bersama dan masukkan ke dalam <span class="hl">Addendum</span> — agar proyek utama tetap Go-Live tepat waktu dan ide baru pun dieksekusi dengan sempurna.</p>
+        </div>
+        <div class="commit">
+            <h4>⏱️ &nbsp;Target Kami: Go-Live di Bulan ke-7. Kontrak berlaku Maksimal 12 Bulan.</h4>
+            <p>Kami menargetkan selesai jauh sebelum 12 bulan. Jika karena kondisi tertentu proyek melampaui batas tersebut, kita akan bersama-sama menyepakati <span class="hl">skema lanjutan yang adil dan transparan</span> — tidak ada yang terjebak di situasi yang tidak nyaman.</p>
+        </div>
+    </div>
+
+    <!-- ══ 05. INVESTASI ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 05</span>
+        <span class="sec-title">Investasi & Skema Pembayaran</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Transparansi Biaya Pengembangan</h2>
+
+        <div class="price-header">
+            <div>
+                <div class="price-num">Rp 127.000.000</div>
+                <div class="price-note">Biaya pengembangan aplikasi ekosistem 3 Fase · <em>tidak termasuk</em> biaya server/hosting</div>
+            </div>
+            <span class="price-badge">Aplikasi Only</span>
+        </div>
+
+        <p style="font-size:0.85rem;color:var(--text-soft);margin-bottom:18px;">Mencakup pengembangan penuh, dukungan teknis selama masa pengerjaan, dan pendampingan Go-Live.</p>
+
+        <table class="pay-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Termin</th>
+                    <th>Trigger Pembayaran</th>
+                    <th style="text-align:right">%</th>
+                    <th style="text-align:right">Nominal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-idx">T-01</td>
+                    <td class="col-label"><span class="pay-dot" style="background:var(--blue)"></span>Down Payment</td>
+                    <td class="col-trigger">Penandatanganan kontrak & dimulainya proyek</td>
+                    <td class="col-pct">40%</td>
+                    <td class="col-amt">50.800.000</td>
+                </tr>
+                <tr>
+                    <td class="col-idx">T-02</td>
+                    <td class="col-label"><span class="pay-dot" style="background:#0ea5e9"></span>UAT Tahap 1</td>
+                    <td class="col-trigger">Sistem Tahap 1 siap diuji oleh tim Cahaya Baru</td>
+                    <td class="col-pct">30%</td>
+                    <td class="col-amt">38.100.000</td>
+                </tr>
+                <tr>
+                    <td class="col-idx">T-03</td>
+                    <td class="col-label"><span class="pay-dot" style="background:#0e7490"></span>Go-Live Penuh</td>
+                    <td class="col-trigger">Seluruh ekosistem (Tahap 1–3) dirilis & serah terima</td>
+                    <td class="col-pct">30%</td>
+                    <td class="col-amt">38.100.000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ══ 06. MAINTENANCE ══ -->
+    <div class="sec-head">
+        <span class="sec-num">§ 06</span>
+        <span class="sec-title">Dukungan Berkelanjutan</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="card">
+        <h2>Maintenance & Opsi Server</h2>
+        <p class="lead">Go-Live bukan akhir perjalanan. Kami hadir memastikan sistem terus berjalan optimal dan berkembang seiring bisnis Anda tumbuh. Tahun pertama, dukungan teknis sudah termasuk dalam investasi di atas.</p>
+
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Termasuk di Setiap Paket</div>
+        <div class="maint-std">
+            <div class="mchk">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Bug fixing & perbaikan error
+            </div>
+            <div class="mchk">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Pembaruan keamanan & patch rutin
+            </div>
+            <div class="mchk">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tweak tampilan & penyesuaian UX
+            </div>
+            <div class="mchk">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Konsultasi & dukungan teknis tim Anda
+            </div>
+            <div class="mchk">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Penyesuaian alur validasi & laporan yang ada
+            </div>
+
+            <div class="quota-box">
+                <div class="quota-header">
+                    <div class="quota-num">10</div>
+                    <div>
+                        <div class="quota-label">Kuota Pekerjaan Minor / Bulan</div>
+                        <div class="quota-sub">Digunakan sesuai kebutuhan operasional bulanan Anda</div>
+                    </div>
+                </div>
+                <p style="font-size:0.82rem;color:var(--text-soft);margin-bottom:10px;">Contoh 1 (satu) item pekerjaan minor yang termasuk dalam kuota:</p>
+                <div class="quota-examples">
+                    <div class="qex"><span class="qex-num">01</span> Tambah kolom baru di tabel laporan</div>
+                    <div class="qex"><span class="qex-num">02</span> Tambah atau ubah filter pencarian</div>
+                    <div class="qex"><span class="qex-num">03</span> Ubah format ekspor laporan (PDF / Excel)</div>
+                    <div class="qex"><span class="qex-num">04</span> Tambah notifikasi / alert di menu tertentu</div>
+                    <div class="qex"><span class="qex-num">05</span> Ubah urutan atau nama menu / label</div>
+                    <div class="qex"><span class="qex-num">06</span> Tweak rumus kalkulasi yang sudah ada</div>
+                    <div class="qex"><span class="qex-num">07</span> Tambah validasi / aturan input baru</div>
+                    <div class="qex"><span class="qex-num">08</span> Ubah tampilan atau skema warna antarmuka</div>
+                    <div class="qex"><span class="qex-num">09</span> Tambah hak akses / role pengguna baru</div>
+                    <div class="qex"><span class="qex-num">10</span> Penyesuaian cetak nota / dokumen yang ada</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0;">Perbandingan Paket Maintenance</div>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Layanan</th>
+                    <th>Mandiri</th>
+                    <th class="featured">All-in (Server + App)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Bug fixing & pembaruan keamanan</td><td><span class="check-y">✓</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Kuota 10 pekerjaan minor/bulan</td><td><span class="check-y">✓</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Konsultasi teknis responsif</td><td><span class="check-y">✓</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Monitoring aplikasi & notifikasi error</td><td><span class="check-y">✓</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Cloud server dikelola 7smarts</td><td><span class="check-n">—</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Backup database otomatis terjadwal</td><td><span class="check-n">—</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Monitoring infrastruktur 24/7</td><td><span class="check-n">—</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr><td>Respon prioritas (SLA dipercepat)</td><td><span class="check-n">—</span></td><td><span class="check-y">✓</span></td></tr>
+                <tr class="row-price">
+                    <td>Estimasi Biaya</td>
+                    <td>Rp 1.500.000 / bln</td>
+                    <td>Rp 2.500.000 / bln</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="growth">
+            <div class="growth-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            </div>
+            <div class="growth-body">
+                <h4>Bagaimana jika bisnis Anda berkembang?</h4>
+                <p>Penambahan <strong>modul baru atau fitur berskala besar</strong> di luar kuota adalah tanda positif pertumbuhan bisnis. Kita buat estimasi transparan dan eksekusi sebagai <span class="hl">proyek terpisah</span> — harga jelas, timeline jelas, tanpa biaya kejutan.</p>
+            </div>
+        </div>
+
+        <div class="notice">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span><strong>Catatan:</strong> Biaya maintenance final disepakati bersama menjelang Go-Live, menyesuaikan kompleksitas sistem aktual. Angka di atas adalah estimasi awal sebagai acuan perencanaan anggaran.</span>
+        </div>
+    </div>
+
+    <!-- ══ CTA ══ -->
+    <div class="sec-head" style="margin-top:44px;">
+        <span class="sec-num">§ 07</span>
+        <span class="sec-title">Langkah Berikutnya</span>
+        <div class="sec-line"></div>
+    </div>
+    <div class="cta-card">
+        <p>Sudah membaca seluruh proposal? Mari kita mulai percakapan.</p>
+        <h2>Siap Memulai Bersama?</h2>
+        <br>
+        <a href="mailto:contact@7smarts.com?subject=Konfirmasi%20Penawaran%20ERP%20Cahaya%20Baru" class="btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Hubungi Kami untuk Diskusi Lanjutan
+        </a>
+        <div class="footer-note">DOC/CB/ERP/2025-07 · Diterbitkan oleh 7smarts Technology · Bersifat Konfidensial</div>
+    </div>
+
+</div>
+
+<script>
+    // Reading progress bar
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById('progress-bar').style.width = pct + '%';
+    });
+</script>
+
+</body>
+</html>
