@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Penawaran & Kesepakatan Kerjasama — 7smarts</title>
+    <title>Surat Penawaran ERP — 7smarts</title>
     <link rel="icon" type="image/png" href="assets/logo7smarts.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue:       #0099d6;
-            --blue-mid:   #0080b8;
             --blue-dark:  #005f8e;
             --navy:       #0b1d30;
-            --navy-2:     #112437;
-
             --text-main:  #0b1d30;
             --text-body:  #2d3748;
             --text-soft:  #64748b;
-
             --border:     #cbd5e1;
             --bg:         #f1f5f9;
             --surface:    #ffffff;
             --green:      #059669;
-
             --mono: 'JetBrains Mono', monospace;
         }
 
@@ -36,7 +31,6 @@
             padding: 24px 12px 60px;
         }
 
-        /* ─── SURAT / PAPER CONTAINER ─── */
         .paper {
             max-width: 760px;
             margin: 0 auto;
@@ -60,68 +54,77 @@
         .kop-info { text-align: right; font-size: 0.76rem; color: var(--text-soft); }
         .kop-info strong { color: var(--navy); font-size: 0.85rem; }
 
-        /* ─── TITLE ─── */
-        .doc-title { text-align: center; margin-bottom: 28px; }
-        .doc-title h1 { font-size: 1.25rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; text-transform: uppercase; }
-        .doc-title p { font-size: 0.85rem; color: var(--blue-dark); font-weight: 600; margin-top: 2px; }
-
-        /* ─── PIHAK BERKESAPAKATAN ─── */
-        .parties { margin-bottom: 24px; font-size: 0.88rem; }
-        .parties-title { font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-        .party-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
-        .party-table td { padding: 3px 0; vertical-align: top; font-size: 0.85rem; }
-        .party-table td.lbl { width: 140px; color: var(--text-soft); }
-        .party-table td.colon { width: 12px; text-align: center; color: var(--text-soft); }
-        .party-table td.val { color: var(--text-main); font-weight: 500; }
-
-        /* ─── PARAGRAF PEMBUKA & PASAL ─── */
-        .statement { font-size: 0.86rem; color: var(--text-body); margin-bottom: 16px; line-height: 1.65; }
-
-        .pasal { margin-bottom: 20px; }
-        .pasal-head {
+        /* ─── METADATA PENAWARAN ─── */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
             font-size: 0.85rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 6px;
+        }
+        .meta-item { display: flex; gap: 8px; }
+        .meta-item .lbl { width: 110px; color: var(--text-soft); }
+        .meta-item .val { font-weight: 600; color: var(--navy); }
+
+        /* ─── SURAT PENGANTAR ─── */
+        .intro-text { font-size: 0.86rem; color: var(--text-body); margin-bottom: 24px; line-height: 1.65; }
+
+        /* ─── SECTION TITLE ─── */
+        .sec-title {
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--navy);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            margin-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 10px;
             padding-bottom: 4px;
             border-bottom: 1px solid var(--border);
         }
-        .pasal-body { font-size: 0.85rem; color: var(--text-body); }
-        .pasal-body p { margin-bottom: 8px; }
-        .pasal-body ul, .pasal-body ol { padding-left: 18px; margin-bottom: 8px; }
-        .pasal-body li { margin-bottom: 4px; }
 
-        /* ─── TABEL KETENTUAN FITUR / MEMO ─── */
-        .doc-table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+        /* ─── TABLE STYLES ─── */
+        .doc-table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; }
         .doc-table th { background: #f8fafc; border: 1px solid var(--border); padding: 8px 10px; font-size: 0.78rem; text-align: left; font-weight: 700; color: var(--navy); }
         .doc-table td { border: 1px solid var(--border); padding: 8px 10px; font-size: 0.82rem; vertical-align: top; }
 
-        /* ─── TANDA TANGAN ─── */
+        /* ─── HIGHLIGHT BOX ─── */
+        .box-info {
+            background: #f0f9ff;
+            border: 1px solid rgba(0,153,214,0.3);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 0.83rem;
+            color: var(--text-body);
+            margin-bottom: 16px;
+        }
+
+        /* ─── SIGNATURE / CONFIRMATION ─── */
+        .confirm-section {
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
         .ttd-box {
             display: flex;
             justify-content: space-between;
-            margin-top: 36px;
-            padding-top: 16px;
+            margin-top: 20px;
         }
         .ttd-col { text-align: center; width: 45%; }
         .ttd-col .role { font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
         .ttd-col .comp { font-size: 0.82rem; font-weight: 700; color: var(--navy); }
-        .ttd-space { height: 70px; }
-        .ttd-col .name { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: underline; }
+        .ttd-space { height: 60px; }
+        .ttd-col .name { font-size: 0.85rem; font-weight: 700; color: var(--navy); }
         .ttd-col .title { font-size: 0.78rem; color: var(--text-soft); }
-
-        /* ─── LAMPIRAN HEADER ─── */
-        .page-break { page-break-before: always; margin-top: 40px; padding-top: 30px; border-top: 2px dashed var(--border); }
-        .lampiran-head { text-align: center; margin-bottom: 20px; }
-        .lampiran-head h2 { font-size: 1.05rem; font-weight: 700; color: var(--navy); text-transform: uppercase; }
 
         @media (max-width: 600px) {
             .paper { padding: 24px 18px; }
             .kop { flex-direction: column; align-items: flex-start; gap: 10px; }
             .kop-info { text-align: left; }
-            .party-table td.lbl { width: 110px; }
+            .meta-grid { grid-template-columns: 1fr; }
             .ttd-box { flex-direction: column; gap: 30px; }
             .ttd-col { width: 100%; }
         }
@@ -136,182 +139,141 @@
         <img src="assets/logo7smarts.png" alt="7smarts">
         <div class="kop-info">
             <strong>SEVEN SMARTS INDONESIA</strong><br>
-            Kp. Bhayangkara RT 04/15, Siswodipuran, Boyolali<br>
+            Kp. Bhayangkara RT 04/15, Siswodipuran, Boyolali, Jawa Tengah<br>
             Email: contact@7smarts.com
         </div>
     </div>
 
-    <!-- TITLE -->
-    <div class="doc-title">
-        <h1>SURAT PENAWARAN & KESEPAKATAN KERJASAMA (MOU)</h1>
-        <p>PENGEMBANGAN EKOSISTEM SYSTEM ERP CAHAYA BARU JAKARTA</p>
+    <!-- METADATA PENAWARAN -->
+    <div class="meta-grid">
+        <div>
+            <div class="meta-item"><span class="lbl">No. Penawaran</span><span class="val">: 7S/QUO/CB/2025/07</span></div>
+            <div class="meta-item"><span class="lbl">Tanggal</span><span class="val">: 23 Juli 2025</span></div>
+            <div class="meta-item"><span class="lbl">Perihal</span><span class="val">: Penawaran Sistem ERP 3 Fase</span></div>
+        </div>
+        <div>
+            <div class="meta-item"><span class="lbl">Kepada Yth.</span><span class="val">: Pimpinan / Owner</span></div>
+            <div class="meta-item"><span class="lbl">Perusahaan</span><span class="val">: Cahaya Baru Jakarta</span></div>
+            <div class="meta-item"><span class="lbl">Masa Berlaku</span><span class="val">: 30 Hari</span></div>
+        </div>
     </div>
 
-    <!-- PARA PIHAK -->
-    <div class="parties">
-        <p class="parties-title">Yang bertanda tangan di bawah ini:</p>
-        
-        <table class="party-table">
-            <tr>
-                <td class="lbl">Nama Perusahaan</td>
-                <td class="colon">:</td>
-                <td class="val">Cahaya Baru Jakarta</td>
-            </tr>
-            <tr>
-                <td class="lbl">Penanggung Jawab</td>
-                <td class="colon">:</td>
-                <td class="val">Pimpinan / Director Cahaya Baru</td>
-            </tr>
-            <tr>
-                <td class="lbl">Selanjutnya disebut</td>
-                <td class="colon">:</td>
-                <td class="val"><strong>PIHAK PERTAMA</strong></td>
-            </tr>
-        </table>
-
-        <table class="party-table">
-            <tr>
-                <td class="lbl">Nama Perusahaan</td>
-                <td class="colon">:</td>
-                <td class="val">Seven Smarts Indonesia (7smarts)</td>
-            </tr>
-            <tr>
-                <td class="lbl">Alamat</td>
-                <td class="colon">:</td>
-                <td class="val">Kp. Bhayangkara RT 04/15, Siswodipuran, Boyolali, Jawa Tengah</td>
-            </tr>
-            <tr>
-                <td class="lbl">Penanggung Jawab</td>
-                <td class="colon">:</td>
-                <td class="val">Ony Sapta Nugraha (Direktur / Owner)</td>
-            </tr>
-            <tr>
-                <td class="lbl">Selanjutnya disebut</td>
-                <td class="colon">:</td>
-                <td class="val"><strong>PIHAK KEDUA</strong></td>
-            </tr>
-        </table>
+    <!-- SURAT PENGANTAR -->
+    <div class="intro-text">
+        Dengan hormat,<br><br>
+        Sehubungan dengan diskusi kebutuhan digitalisasi operasional dan pelaporan pajak pada Cahaya Baru Jakarta, kami dari <strong>Seven Smarts Indonesia (7smarts)</strong> mengajukan penawaran harga dan rencana pengerjaan pengembangan <strong>Ekosistem Sistem ERP Kustom 3 Fase</strong> dengan rincian sebagai berikut:
     </div>
 
-    <p class="statement">
-        <strong>PIHAK PERTAMA</strong> dan <strong>PIHAK KEDUA</strong> sepakat mengikatkan diri dalam kerjasama pengerjaan & maintenance Sistem Informasi ERP Kustom Cahaya Baru Jakarta selama <strong>1 (satu) tahun (12 bulan)</strong> terhitung sejak Kick Off Meeting dilaksanakan.
+    <!-- 1. RUANG LINGKUP SISTEM -->
+    <div class="sec-title">1. RUANG LINGKUP PENGEMBANGAN SISTEM (SCOPE OF WORK)</div>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width:110px;">Fase</th>
+                <th>Cakupan Modul & Fitur</th>
+                <th style="width:130px;">Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Tahap 1</strong><br><small style="color:var(--text-soft)">Aplikasi Internal</small></td>
+                <td>Modul Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok Opname, Kalkulasi Kargo Otomatis, Manajemen Klaim (DOA), & Jurnal Akuntansi Internal.</td>
+                <td>Mode Awal: Upload Excel & Opname Periodik (Masa Adaptasi)</td>
+            </tr>
+            <tr>
+                <td><strong>Tahap 2</strong><br><small style="color:var(--text-soft)">Mesin Bridging</small></td>
+                <td>Mesin filter data otomatis yang mengolah data internal menjadi format data bersih siap pelaporan pajak.</td>
+                <td>Pengerjaan Paralel dengan Tahap 1</td>
+            </tr>
+            <tr>
+                <td><strong>Tahap 3</strong><br><small style="color:var(--text-soft)">Aplikasi Eksternal</small></td>
+                <td>Platform khusus Accounting untuk menerbitkan dokumen resmi & laporan keuangan yang aman serta siap audit.</td>
+                <td>Aplikasi Terpisah Siap Audit</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 2. TIMELINE & KOMITMEN -->
+    <div class="sec-title">2. ESTIMASI WAKTU & METODE KERJA</div>
+    <p style="font-size:0.84rem; margin-bottom:8px;">
+        • <strong>Estimasi Pengerjaan:</strong> 6 - 7 Bulan hingga Go-Live Penuh (Phased Rollout).<br>
+        • <strong>Masa Kontrak Awal:</strong> Berlaku selama <strong>12 Bulan Penuh</strong> sejak Kick Off Meeting (mencakup pengerjaan, pendampingan, & garansi).<br>
+        • <strong>Evaluasi Progress:</strong> Diadakan rutin <strong>setiap 2 minggu sekali (Sprint Review)</strong> agar proyek berjalan on track.
     </p>
 
-    <!-- PASAL 1: RUANG LINGKUP & INVESTASI -->
-    <div class="pasal">
-        <div class="pasal-head">PASAL 1: NILA INVESTASI & SKEMA PEMBAYARAN</div>
-        <div class="pasal-body">
-            <p>1. Total nilai investasi pengembangan sistem ERP 3 Fase adalah sebesar <strong>Rp 127.000.000,- (Seratus Dua Puluh Tujuh Juta Rupiah)</strong>, tidak termasuk biaya server/hosting.</p>
-            <p>2. Pembayaran dilakukan secara bertahap dalam 3 (tiga) termin sebagai berikut:</p>
-            <ul>
-                <li><strong>Termin 1 (DP 40% - Rp 50.800.000,-):</strong> Dibayarkan saat kesepakatan ini ditandatangani & proyek resmi dimulai.</li>
-                <li><strong>Termin 2 (30% - Rp 38.100.000,-):</strong> Dibayarkan saat sistem Tahap 1 (Aplikasi Internal) memasuki fase UAT/Pengujian.</li>
-                <li><strong>Termin 3 (30% - Rp 38.100.000,-):</strong> Dibayarkan saat seluruh ekosistem (Tahap 1–3) resmi dirilis Go-Live.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- PASAL 2: WAKTU & ELEVASI RUTIN -->
-    <div class="pasal">
-        <div class="pasal-head">PASAL 2: TIMELINE & MASAKONTRAK</div>
-        <div class="pasal-body">
-            <p>1. Estimasi waktu pengembangan sampai Go-Live Penuh adalah <strong>6 - 7 Bulan</strong> (Phased Rollout).</p>
-            <p>2. Kontrak kesepakatan awal ini mengikat selama <strong>12 (dua belas) bulan penuh</strong> (termasuk pengerjaan, pendampingan, & dukungan teknis).</p>
-            <p>3. Evaluasi progress dilakukan secara berkala <strong>setiap 2 (dua) minggu sekali (Sprint Review)</strong> antara PIHAK PERTAMA dan PIHAK KEDUA.</p>
-        </div>
-    </div>
-
-    <!-- PASAL 3: MAINTENANCE & OPSI SERVER -->
-    <div class="pasal">
-        <div class="pasal-head">PASAL 3: LAYANAN MAINTENANCE & OPSI SERVER</div>
-        <div class="pasal-body">
-            <p>1. Layanan maintenance tahun ke-1 sudah termasuk dalam nilai investasi di atas. Untuk periode berikutnya disepakati opsi paket:</p>
-            <ul>
-                <li><strong>Paket Mandiri (Rp 1.500.000,- / bulan):</strong> Server dikelola mandiri oleh PIHAK PERTAMA, PIHAK KEDUA mengelola pemeliharaan aplikasi & bug fixing.</li>
-                <li><strong>Paket All-in (Rp 2.500.000,- / bulan):</strong> Managed Cloud Server 7smarts, backup otomatis terjadwal, & respon prioritas 24/7.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- LAMPIRAN I -->
-    <div class="page-break"></div>
-    <div class="lampiran-head">
-        <h2>LAMPIRAN I: KETENTUAN RUANG LINGKUP & PENAMBAHAN FITUR</h2>
-    </div>
-
-    <div class="pasal">
-        <div class="pasal-head">1. CAKUPAN RUANG LINGKUP SISTEM 3 TAHAP</div>
-        <div class="pasal-body">
-            <ul>
-                <li><strong>Tahap 1 (Aplikasi Internal):</strong> Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok, Kargo Otomatis, Klaim DOA, Akuntansi Internal. <em>(Mode Awal: Upload Excel + Stok Opname Periodik)</em>.</li>
-                <li><strong>Tahap 2 (Mesin Filter Data):</strong> Konversi otomatis data internal menjadi format data bersih pelaporan pajak.</li>
-                <li><strong>Tahap 3 (Aplikasi Eksternal):</strong> Platform khusus Accounting untuk penerbitan laporan keuangan resmi siap audit.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="pasal">
-        <div class="pasal-head">2. KETENTUAN PENAMBAHAN FITUR / MENU</div>
-        <div class="pasal-body">
-            <p>Setiap penambahan fitur/menu di luar kesepakatan awal akan dianalisis terlebih dahulu berdasarkan tingkat kompleksitas:</p>
-
-            <table class="doc-table">
-                <thead>
-                    <tr>
-                        <th>Kategori</th>
-                        <th>Contoh Pekerjaan</th>
-                        <th>Estimasi Waktu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Ringan</strong></td>
-                        <td>Perubahan teks, kolom, filter pencarian, format laporan, & tampilan sederhana.</td>
-                        <td>1 - 3 Hari Kerja <em>(Termasuk Kuota 10 Minor/Bln)</em></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Menengah</strong></td>
-                        <td>Menu atau laporan baru & perubahan alur sederhana.</td>
-                        <td>4 - 10 Hari Kerja</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Besar</strong></td>
-                        <td>Modul baru, integrasi sistem utama, atau perubahan database skala besar.</td>
-                        <td>Penawaran Terpisah (Addendum)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>Pekerjaan ringan masuk dalam kuota maintenance. Pekerjaan menengah atau besar yang membutuhkan sumber daya tambahan akan dituangkan dalam <strong>Addendum</strong> setelah disetujui PARA PIHAK.</p>
-        </div>
-    </div>
-
-    <div class="pasal">
-        <div class="pasal-head">3. BATASAN LAYANAN & PROSEDUR PELAPORAN</div>
-        <div class="pasal-body">
-            <p><strong>Batasan Layanan:</strong> Layanan tidak termasuk biaya server, hosting, domain, lisensi API pihak ketiga, migrasi data besar di luar scope, atau kerusakan akibat pihak ketiga.</p>
-            <p><strong>Prosedur Pelaporan Kendala:</strong> Laporan kendala disampaikan melalui <strong>PIC Resmi</strong> dengan mencantumkan nama menu, waktu kejadian, uraian masalah, serta foto/video pendukung.</p>
-        </div>
-    </div>
-
-    <p style="font-size:0.83rem; color:var(--text-soft); margin-top:20px; text-align:center;">
-        Hal-hal yang belum diatur dalam dokumen ini akan diselesaikan melalui musyawarah dan dituangkan dalam kesepakatan tertulis.
+    <!-- 3. RENCANA INVESTASI & SKEMA PEMBAYARAN -->
+    <div class="sec-title">3. INVESTASI & SKEMA PEMBAYARAN</div>
+    <p style="font-size:0.85rem; margin-bottom:8px;">
+        Total Nilai Investasi Pengembangan Aplikasi: <strong style="font-size:0.95rem; color:var(--navy);">Rp 127.000.000,-</strong> <em>(Terbilang: Seratus Dua Puluh Tujuh Juta Rupiah)</em> — harga aplikasi, belum termasuk server.
     </p>
 
-    <!-- TANDA TANGAN -->
-    <div class="ttd-box">
-        <div class="ttd-col">
-            <div class="role">PIHAK PERTAMA</div>
-            <div class="comp">CAHAYA BARU JAKARTA</div>
-            <div class="ttd-space"></div>
-            <div class="name">( Direktur / Owner )</div>
-            <div class="title">Penanggung Jawab</div>
-        </div>
-        <div class="ttd-col">
-            <div class="role">PIHAK KEDUA</div>
-            <div class="comp">SEVEN SMARTS INDONESIA</div>
-            <div class="ttd-space"></div>
-            <div class="name">Ony Sapta Nugraha</div>
-            <div class="title">Direktur / Owner</div>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width:70px;">Termin</th>
+                <th style="width:60px;">%</th>
+                <th>Nominal</th>
+                <th>Trigger / Syarat Pembayaran</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Termin 1</strong></td>
+                <td>40%</td>
+                <td><strong>Rp 50.800.000,-</strong></td>
+                <td>Down Payment saat penandatanganan kesepakatan / Kick Off Proyek.</td>
+            </tr>
+            <tr>
+                <td><strong>Termin 2</strong></td>
+                <td>30%</td>
+                <td><strong>Rp 38.100.000,-</strong></td>
+                <td>Saat Sistem Tahap 1 (Aplikasi Internal) memasuki fase UAT / Pengujian.</td>
+            </tr>
+            <tr>
+                <td><strong>Termin 3</strong></td>
+                <td>30%</td>
+                <td><strong>Rp 38.100.000,-</strong></td>
+                <td>Saat seluruh ekosistem (Tahap 1–3) resmi dirilis Go-Live & Serah Terima.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 4. MAINTENANCE & KETENTUAN PERUBAHAN FITUR -->
+    <div class="sec-title">4. DUKUNGAN MAINTENANCE & KETENTUAN FITUR TAMBAHAN</div>
+    <p style="font-size:0.84rem; margin-bottom:8px;">
+        Dukungan teknis tahun ke-1 sudah termasuk dalam investasi di atas. Untuk tahun ke-2 dan seterusnya tersedia opsi:
+    </p>
+    <ul style="font-size:0.83rem; padding-left:18px; margin-bottom:10px;">
+        <li><strong>Paket Maintenance Mandiri (Rp 1.500.000,- / bulan):</strong> Server dikelola mandiri oleh klien, 7smarts memelihara aplikasi & bug fixing.</li>
+        <li><strong>Paket All-in Server + App (Rp 2.500.000,- / bulan):</strong> Cloud Server dikelola 7smarts, backup otomatis, & respon prioritas.</li>
+    </ul>
+
+    <div class="box-info">
+        <strong>✦ Kuota Pekerjaan Minor & Addendum:</strong><br>
+        Setiap bulan maintenance sudah mencakup <strong style="color:var(--navy);">kuota 10 pekerjaan minor</strong> (perubahan teks, kolom, filter, format laporan). Jika muncul penambahan modul baru atau fitur berskala besar di luar scope awal, akan didiskusikan dan dituangkan dalam <strong>Addendum</strong> terpisah demi kelancaran proyek utama.
+    </div>
+
+    <!-- TANDA TANGAN / LEMBAR PERSETUJUAN PENAWARAN -->
+    <div class="confirm-section">
+        <p style="font-size:0.84rem; text-align:center; margin-bottom:16px;">
+            Demikian penawaran ini kami sampaikan. Apabila Bapak/Ibu menyetujui penawaran ini, lembar persetujuan di bawah ini dapat ditandatangani untuk dilanjutkan ke tahap Kick Off Meeting.
+        </p>
+
+        <div class="ttd-box">
+            <div class="ttd-col">
+                <div class="role">Disetujui Oleh,</div>
+                <div class="comp">CAHAYA BARU JAKARTA</div>
+                <div class="ttd-space"></div>
+                <div class="name">( Pimpinan / Owner )</div>
+                <div class="title">Cahaya Baru Jakarta</div>
+            </div>
+            <div class="ttd-col">
+                <div class="role">Hormat Kami,</div>
+                <div class="comp">SEVEN SMARTS INDONESIA</div>
+                <div class="ttd-space"></div>
+                <div class="name">Ony Sapta Nugraha</div>
+                <div class="title">Direktur / Owner</div>
+            </div>
         </div>
     </div>
 
