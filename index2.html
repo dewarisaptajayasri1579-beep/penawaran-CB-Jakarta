@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penawaran ERP Executive Summary — 7smarts</title>
+    <link rel="icon" type="image/png" href="assets/logo7smarts.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue:       #0099d6;
+            --blue-mid:   #0080b8;
+            --blue-dark:  #005f8e;
+            --blue-pale:  #e8f6fd;
+            --blue-tint:  #f3fbff;
+            --navy:       #0b1d30;
+            --navy-2:     #112437;
+
+            --text-main:  #0b1d30;
+            --text-body:  #2d3748;
+            --text-soft:  #64748b;
+            --text-muted: #94a3b8;
+
+            --border:     #dde5ef;
+            --border-mid: #c8d8e8;
+            --border-blue:rgba(0,153,214,0.22);
+            --bg:         #f4f7fa;
+            --surface:    #ffffff;
+            --green:      #0a8a62;
+            --green-bg:   #edfaf5;
+
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            font-size: 14.5px;
+        }
+
+        /* ─── TOP BAR ─── */
+        .top-bar {
+            background: var(--navy);
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .top-bar img { height: 26px; }
+        .top-bar .doc-status {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--blue);
+            background: rgba(0,153,214,0.12);
+            border: 1px solid rgba(0,153,214,0.25);
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #0a2946 100%);
+            padding: 40px 20px 52px;
+            color: #fff;
+        }
+        .hero-inner { max-width: 720px; margin: 0 auto; }
+        .hero-chip {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+        }
+        .hero h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero h1 span { color: var(--blue); }
+        .hero p { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+
+        /* ─── CONTAINER ─── */
+        .container { max-width: 720px; margin: 0 auto; padding: 16px 16px 80px; }
+
+        /* ─── CARD ─── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 22px 24px;
+            margin-bottom: 14px;
+        }
+        .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .card-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title .num {
+            font-family: var(--mono);
+            background: var(--blue-pale);
+            border: 1px solid var(--border-blue);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* ─── COMPACT LISTS ─── */
+        .phase-compact { display: flex; flex-direction: column; gap: 10px; }
+        .phase-item {
+            padding: 12px 14px;
+            background: var(--bg);
+            border-radius: 8px;
+            border-left: 3px solid var(--blue);
+        }
+        .phase-item.p2 { border-left-color: #0369a1; }
+        .phase-item.p3 { border-left-color: #0e7490; }
+        .phase-item h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin-bottom: 3px; }
+        .phase-item p { font-size: 0.82rem; color: var(--text-soft); }
+
+        /* ─── TIMELINE COMPACT ─── */
+        .tl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+        .tl-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .tl-box .m { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--blue-dark); }
+        .tl-box .t { font-size: 0.75rem; font-weight: 500; color: var(--text-main); margin-top: 2px; }
+
+        /* ─── COMMITMENT GRID ─── */
+        .commit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .commit-box {
+            padding: 12px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .commit-box h5 { font-size: 0.83rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+        .commit-box p { font-size: 0.79rem; color: var(--text-soft); line-height: 1.5; }
+
+        /* ─── PRICING ─── */
+        .price-hero {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            background: var(--blue-tint);
+            border: 1px solid var(--border-blue);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .price-hero .val { font-family: var(--mono); font-size: 2.2rem; font-weight: 700; color: var(--text-main); }
+        .price-hero .lbl { font-size: 0.78rem; color: var(--text-soft); text-align: right; }
+
+        .pay-compact { width: 100%; border-collapse: collapse; }
+        .pay-compact td { padding: 8px 10px; font-size: 0.82rem; border-bottom: 1px solid var(--border); }
+        .pay-compact tr:last-child td { border-bottom: none; }
+        .pay-compact .pct { font-family: var(--mono); font-weight: 600; color: var(--blue-dark); width: 45px; }
+        .pay-compact .amt { font-family: var(--mono); font-weight: 600; text-align: right; }
+
+        /* ─── MAINTENANCE ─── */
+        .maint-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .maint-card {
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+        }
+        .maint-card.active { border-color: var(--border-blue); background: var(--blue-tint); }
+        .maint-card h5 { font-size: 0.83rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+        .maint-card .prc { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; color: var(--blue-dark); margin-top: 8px; }
+
+        .quota-pill {
+            margin-top: 10px;
+            background: var(--green-bg);
+            border: 1px solid rgba(10,138,98,0.2);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.78rem;
+            color: var(--green);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ─── CTA ─── */
+        .cta-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--blue);
+            color: #fff;
+            padding: 13px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0,153,214,0.3);
+            margin-top: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.45rem; }
+            .tl-grid { grid-template-columns: 1fr 1fr; }
+            .commit-grid, .maint-compact { grid-template-columns: 1fr; }
+            .price-hero { flex-direction: column; gap: 4px; }
+            .price-hero .val { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <img src="assets/logo7smarts.png" alt="7smarts">
+    <span class="doc-status">Ringkasan Penawaran</span>
+</div>
+
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-chip">7smarts Technology · Cahaya Baru</div>
+        <h1>Ringkasan Penawaran <span>Sistem ERP</span></h1>
+        <p>Ringkasan eksekutif pengembangan ekosistem ERP kustom 3 Tahap.</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 1. RUANG LINGKUP -->
+    <div class="card">
+        <div class="card-head">
+            <span class="card-title"><span class="num">01</span> Ruang Lingkup Sistem</span>
+        </div>
+        <div class="phase-compact">
+            <div class="phase-item">
+                <h4>Tahap 1 — Aplikasi Internal (Operasional)</h4>
+                <p>Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok, Kargo Otomatis, Klaim DOA, Akuntansi Internal.</p>
+            </div>
+            <div class="phase-item p2">
+                <h4>Tahap 2 — Mesin Filter Data (Bridging)</h4>
+                <p>Konversi & penyaringan otomatis data internal menjadi data bersih siap pelaporan pajak.</p>
+            </div>
+            <div class="phase-item p3">
+                <h4>Tahap 3 — Aplikasi Eksternal (Pajak)</h4>
+                <p>Platform terpisah khusus Accounting untuk diterbitkan laporan keuangan resmi siap audit.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. TIMELINE & KOMITMEN -->
+    <div class="card">
+        <div class="card-head">
+            <span class="card-title"><span class="num">02</span> Rencana Waktu & Komitmen</span>
+        </div>
+        <div class="tl-grid">
+            <div class="tl-box">
+                <div class="m">Bln 1–3</div>
+                <div class="t">Dev Tahap 1</div>
+            </div>
+            <div class="tl-box">
+                <div class="m">Bln 4</div>
+                <div class="t">Go-Live Tahap 1</div>
+            </div>
+            <div class="tl-box">
+                <div class="m">Bln 5–6</div>
+                <div class="t">Dev Tahap 2 & 3</div>
+            </div>
+            <div class="tl-box">
+                <div class="m">Bln 7</div>
+                <div class="t">Go-Live Penuh</div>
+            </div>
+        </div>
+        <div class="commit-grid">
+            <div class="commit-box">
+                <h5>📋 Modul Baru = Addendum</h5>
+                <p>Tweak minor diselesaikan langsung. Penambahan modul baru/besar didiskusikan via Addendum transparan.</p>
+            </div>
+            <div class="commit-box">
+                <h5>⏱️ 12 Bulan Kontrak Awal</h5>
+                <p>Target Go-Live di Bulan ke-7. Komitmen garansi & pengerjaan mengikat selama 12 bulan penuh.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. INVESTASI & SKEMA -->
+    <div class="card">
+        <div class="card-head">
+            <span class="card-title"><span class="num">03</span> Investasi & Skema Pembayaran</span>
+        </div>
+        <div class="price-hero">
+            <div class="val">Rp 127.000.000</div>
+            <div class="lbl">Aplikasi Only (3 Tahap)<br><em>Tidak termasuk server</em></div>
+        </div>
+        <table class="pay-compact">
+            <tr>
+                <td class="pct">40%</td>
+                <td><strong>Termin 1 (DP)</strong> — Penandatanganan Kontrak</td>
+                <td class="amt">Rp 50.800.000</td>
+            </tr>
+            <tr>
+                <td class="pct">30%</td>
+                <td><strong>Termin 2</strong> — UAT & Pengujian Tahap 1</td>
+                <td class="amt">Rp 38.100.000</td>
+            </tr>
+            <tr>
+                <td class="pct">30%</td>
+                <td><strong>Termin 3</strong> — Go-Live Ekosistem Penuh</td>
+                <td class="amt">Rp 38.100.000</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 4. MAINTENANCE -->
+    <div class="card">
+        <div class="card-head">
+            <span class="card-title"><span class="num">04</span> Maintenance & Server</span>
+        </div>
+        <div class="maint-compact">
+            <div class="maint-card">
+                <h5>Mandiri (Server Klien)</h5>
+                <p style="font-size:0.78rem;color:var(--text-soft);">Bug fixing, patch keamanan, & konsultasi teknis.</p>
+                <div class="prc">Rp 1.500.000 / bln</div>
+            </div>
+            <div class="maint-card active">
+                <h5>All-in (Server + App)</h5>
+                <p style="font-size:0.78rem;color:var(--text-soft);">Cloud server 7smarts, backup otomatis, & garansi prioritas.</p>
+                <div class="prc">Rp 2.500.000 / bln</div>
+            </div>
+        </div>
+        <div class="quota-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Termasuk Kuota 10 Pekerjaan Minor / Bulan (tambah kolom, filter, format laporan, dll.)
+        </div>
+    </div>
+
+    <a href="mailto:contact@7smarts.com?subject=Konfirmasi%20Penawaran%20ERP%20Cahaya%20Baru" class="cta-btn">
+        Hubungi Kami untuk Diskusi Lanjutan
+    </a>
+
+</div>
+
+</body>
+</html>
