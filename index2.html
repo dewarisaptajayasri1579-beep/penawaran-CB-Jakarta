@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penawaran ERP Executive Summary — 7smarts</title>
+    <title>Penawaran Sistem ERP — 7smarts (Ringkasan Lengkap)</title>
     <link rel="icon" type="image/png" href="assets/logo7smarts.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -70,16 +70,16 @@
         /* ─── HERO ─── */
         .hero {
             background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #0a2946 100%);
-            padding: 40px 20px 52px;
+            padding: 40px 20px 48px;
             color: #fff;
         }
-        .hero-inner { max-width: 720px; margin: 0 auto; }
+        .hero-inner { max-width: 740px; margin: 0 auto; }
         .hero-chip {
             font-family: var(--mono);
             font-size: 0.68rem;
             color: rgba(255,255,255,0.45);
             letter-spacing: 0.06em;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .hero h1 {
             font-size: 1.85rem;
@@ -92,14 +92,14 @@
         .hero p { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
 
         /* ─── CONTAINER ─── */
-        .container { max-width: 720px; margin: 0 auto; padding: 16px 16px 80px; }
+        .container { max-width: 740px; margin: 0 auto; padding: 16px 16px 80px; }
 
         /* ─── CARD ─── */
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 22px 24px;
+            padding: 24px 26px;
             margin-bottom: 14px;
         }
         .card-head {
@@ -129,41 +129,70 @@
             font-size: 0.7rem;
         }
 
-        /* ─── COMPACT LISTS ─── */
+        /* ─── COMPACT LISTS & TABLES ─── */
         .phase-compact { display: flex; flex-direction: column; gap: 10px; }
         .phase-item {
-            padding: 12px 14px;
+            padding: 14px 16px;
             background: var(--bg);
             border-radius: 8px;
             border-left: 3px solid var(--blue);
         }
         .phase-item.p2 { border-left-color: #0369a1; }
         .phase-item.p3 { border-left-color: #0e7490; }
-        .phase-item h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin-bottom: 3px; }
-        .phase-item p { font-size: 0.82rem; color: var(--text-soft); }
+        .phase-item h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+        .phase-item p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.5; }
+        .phase-item .tag-sub {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.76rem;
+            color: var(--blue-dark);
+            background: var(--blue-pale);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
 
         /* ─── TIMELINE COMPACT ─── */
-        .tl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+        .tl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
         .tl-box {
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 10px;
+            padding: 10px 8px;
             text-align: center;
         }
         .tl-box .m { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--blue-dark); }
         .tl-box .t { font-size: 0.75rem; font-weight: 500; color: var(--text-main); margin-top: 2px; }
 
-        /* ─── COMMITMENT GRID ─── */
+        .notice-box {
+            padding: 10px 14px;
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #78350f;
+            margin-bottom: 14px;
+        }
+
+        /* ─── KOM CHECKLIST ─── */
+        .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+        .check-item {
+            display: flex; gap: 8px; align-items: flex-start;
+            font-size: 0.82rem; color: var(--text-soft);
+            padding: 7px 10px; background: var(--bg); border-radius: 6px; border: 1px solid var(--border);
+        }
+        .check-item svg { flex-shrink: 0; margin-top: 2px; }
+
+        /* ─── COMMITMENT BOXES ─── */
         .commit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .commit-box {
-            padding: 12px 14px;
+            padding: 14px 16px;
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 8px;
         }
-        .commit-box h5 { font-size: 0.83rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
-        .commit-box p { font-size: 0.79rem; color: var(--text-soft); line-height: 1.5; }
+        .commit-box h5 { font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 5px; }
+        .commit-box p { font-size: 0.8rem; color: var(--text-soft); line-height: 1.55; }
+        .commit-box p strong { color: var(--text-main); }
 
         /* ─── PRICING ─── */
         .price-hero {
@@ -180,36 +209,35 @@
         .price-hero .lbl { font-size: 0.78rem; color: var(--text-soft); text-align: right; }
 
         .pay-compact { width: 100%; border-collapse: collapse; }
-        .pay-compact td { padding: 8px 10px; font-size: 0.82rem; border-bottom: 1px solid var(--border); }
+        .pay-compact td { padding: 9px 10px; font-size: 0.83rem; border-bottom: 1px solid var(--border); }
         .pay-compact tr:last-child td { border-bottom: none; }
         .pay-compact .pct { font-family: var(--mono); font-weight: 600; color: var(--blue-dark); width: 45px; }
         .pay-compact .amt { font-family: var(--mono); font-weight: 600; text-align: right; }
 
         /* ─── MAINTENANCE ─── */
-        .maint-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .maint-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
         .maint-card {
-            padding: 14px;
+            padding: 14px 16px;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: var(--bg);
         }
         .maint-card.active { border-color: var(--border-blue); background: var(--blue-tint); }
-        .maint-card h5 { font-size: 0.83rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
-        .maint-card .prc { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; color: var(--blue-dark); margin-top: 8px; }
+        .maint-card h5 { font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+        .maint-card ul { padding-left: 14px; margin-top: 6px; font-size: 0.78rem; color: var(--text-soft); }
+        .maint-card li { margin-bottom: 3px; }
+        .maint-card .prc { font-family: var(--mono); font-size: 0.88rem; font-weight: 700; color: var(--blue-dark); margin-top: 10px; }
 
-        .quota-pill {
-            margin-top: 10px;
-            background: var(--green-bg);
-            border: 1px solid rgba(10,138,98,0.2);
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-size: 0.78rem;
-            color: var(--green);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .quota-box {
+            background: var(--blue-pale);
+            border: 1px solid var(--border-blue);
+            border-radius: 8px;
+            padding: 14px 16px;
         }
+        .quota-head { font-size: 0.82rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; }
+        .quota-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin-top: 8px; }
+        .q-item { font-size: 0.78rem; color: var(--text-soft); display: flex; gap: 6px; }
+        .q-item span { color: var(--blue); font-weight: 600; }
 
         /* ─── CTA ─── */
         .cta-btn {
@@ -218,19 +246,19 @@
             text-align: center;
             background: var(--blue);
             color: #fff;
-            padding: 13px;
+            padding: 14px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.88rem;
             text-decoration: none;
             box-shadow: 0 4px 14px rgba(0,153,214,0.3);
-            margin-top: 14px;
+            margin-top: 16px;
         }
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.45rem; }
             .tl-grid { grid-template-columns: 1fr 1fr; }
-            .commit-grid, .maint-compact { grid-template-columns: 1fr; }
+            .commit-grid, .maint-compact, .check-grid, .quota-grid { grid-template-columns: 1fr; }
             .price-hero { flex-direction: column; gap: 4px; }
             .price-hero .val { font-size: 1.8rem; }
         }
@@ -240,14 +268,14 @@
 
 <div class="top-bar">
     <img src="assets/logo7smarts.png" alt="7smarts">
-    <span class="doc-status">Ringkasan Penawaran</span>
+    <span class="doc-status">Dokumen Penawaran</span>
 </div>
 
 <div class="hero">
     <div class="hero-inner">
-        <div class="hero-chip">7smarts Technology · Cahaya Baru</div>
-        <h1>Ringkasan Penawaran <span>Sistem ERP</span></h1>
-        <p>Ringkasan eksekutif pengembangan ekosistem ERP kustom 3 Tahap.</p>
+        <div class="hero-chip">7smarts Technology · Cahaya Baru Jakarta</div>
+        <h1>Penawaran Sistem ERP <span>(Ringkasan Lengkap)</span></h1>
+        <p>Ekosistem ERP Kustom — dirancang khusus untuk operasional & kepatuhan pajak Cahaya Baru.</p>
     </div>
 </div>
 
@@ -256,28 +284,29 @@
     <!-- 1. RUANG LINGKUP -->
     <div class="card">
         <div class="card-head">
-            <span class="card-title"><span class="num">01</span> Ruang Lingkup Sistem</span>
+            <span class="card-title"><span class="num">01</span> Ruang Lingkup Sistem 3 Tahap</span>
         </div>
         <div class="phase-compact">
             <div class="phase-item">
-                <h4>Tahap 1 — Aplikasi Internal (Operasional)</h4>
-                <p>Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok, Kargo Otomatis, Klaim DOA, Akuntansi Internal.</p>
+                <h4>Tahap 1 — Aplikasi Internal (Operasional Jakarta)</h4>
+                <p>Modul Pembelian, Penjualan (Ekspor/Lokal/Mitra), Stok, Kalkulasi Kargo Otomatis, Manajemen Klaim (DOA), dan Jurnal Akuntansi Internal.</p>
+                <span class="tag-sub">⟳ Mode Awal: Upload Excel + Stok Opname Periodik (Masa Adaptasi Karyawan)</span>
             </div>
             <div class="phase-item p2">
-                <h4>Tahap 2 — Mesin Filter Data (Bridging)</h4>
-                <p>Konversi & penyaringan otomatis data internal menjadi data bersih siap pelaporan pajak.</p>
+                <h4>Tahap 2 — Mesin Filter Data (Bridging Eksternal)</h4>
+                <p>Konversi & penyaringan otomatis data internal menjadi data bersih yang valid dan siap untuk pelaporan pajak.</p>
             </div>
             <div class="phase-item p3">
-                <h4>Tahap 3 — Aplikasi Eksternal (Pajak)</h4>
-                <p>Platform terpisah khusus Accounting untuk diterbitkan laporan keuangan resmi siap audit.</p>
+                <h4>Tahap 3 — Aplikasi Eksternal (Pelaporan Pajak)</h4>
+                <p>Platform khusus Accounting untuk menerbitkan dokumen resmi & laporan keuangan yang aman serta siap audit.</p>
             </div>
         </div>
     </div>
 
-    <!-- 2. TIMELINE & KOMITMEN -->
+    <!-- 2. TIMELINE & KICK OFF -->
     <div class="card">
         <div class="card-head">
-            <span class="card-title"><span class="num">02</span> Rencana Waktu & Komitmen</span>
+            <span class="card-title"><span class="num">02</span> Timeline & Kick Off Meeting (KOM)</span>
         </div>
         <div class="tl-grid">
             <div class="tl-box">
@@ -297,66 +326,127 @@
                 <div class="t">Go-Live Penuh</div>
             </div>
         </div>
-        <div class="commit-grid">
-            <div class="commit-box">
-                <h5>📋 Modul Baru = Addendum</h5>
-                <p>Tweak minor diselesaikan langsung. Penambahan modul baru/besar didiskusikan via Addendum transparan.</p>
+        
+        <div class="notice-box">
+            ⏱️ <strong>Evaluasi Rutin:</strong> Evaluasi progress diadakan <strong>setiap 2 minggu (Sprint Review)</strong> agar proyek terkontrol dan Go-Live tepat waktu.
+        </div>
+
+        <p style="font-size:0.82rem;font-weight:600;color:var(--text-main);margin-bottom:8px;">Hasil Kick Off Meeting (Berita Acara KOM):</p>
+        <div class="check-grid">
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Daftar fitur final (point by point)
             </div>
-            <div class="commit-box">
-                <h5>⏱️ 12 Bulan Kontrak Awal</h5>
-                <p>Target Go-Live di Bulan ke-7. Komitmen garansi & pengerjaan mengikat selama 12 bulan penuh.</p>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Penetapan PIC Pengambil Keputusan
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Jadwal Sprint Review 2 mingguan
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tanggal mulai (titik awal 12 bln)
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Pengesahan mekanisme Addendum
+            </div>
+            <div class="check-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Tanda tangan & stempel komitmen
             </div>
         </div>
     </div>
 
-    <!-- 3. INVESTASI & SKEMA -->
+    <!-- 3. KOMITMEN BERSAMA -->
     <div class="card">
         <div class="card-head">
-            <span class="card-title"><span class="num">03</span> Investasi & Skema Pembayaran</span>
+            <span class="card-title"><span class="num">03</span> Komitmen Bersama</span>
+        </div>
+        <div class="commit-grid">
+            <div class="commit-box">
+                <h5>📋 Penyesuaian vs Addendum</h5>
+                <p>Tweak & penyesuaian kecil diselesaikan langsung. Penambahan modul baru/menu besar didiskusikan dan dituangkan dalam <strong>Addendum</strong> agar proyek utama Go-Live tepat waktu.</p>
+            </div>
+            <div class="commit-box">
+                <h5>⏱️ 12 Bulan Kontrak Awal</h5>
+                <p>Target Go-Live di Bulan ke-7. Komitmen garansi & pengerjaan mengikat selama <strong>12 bulan penuh</strong> sejak Kick Off untuk kepastian kedua belah pihak.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. INVESTASI & SKEMA -->
+    <div class="card">
+        <div class="card-head">
+            <span class="card-title"><span class="num">04</span> Investasi & Skema Pembayaran</span>
         </div>
         <div class="price-hero">
             <div class="val">Rp 127.000.000</div>
-            <div class="lbl">Aplikasi Only (3 Tahap)<br><em>Tidak termasuk server</em></div>
+            <div class="lbl">Pengembangan Aplikasi (3 Tahap)<br><em>Tidak termasuk biaya server</em></div>
         </div>
         <table class="pay-compact">
             <tr>
                 <td class="pct">40%</td>
-                <td><strong>Termin 1 (DP)</strong> — Penandatanganan Kontrak</td>
+                <td><strong>Termin 1 (DP)</strong> — Penandatanganan Kontrak / Start Proyek</td>
                 <td class="amt">Rp 50.800.000</td>
             </tr>
             <tr>
                 <td class="pct">30%</td>
-                <td><strong>Termin 2</strong> — UAT & Pengujian Tahap 1</td>
+                <td><strong>Termin 2</strong> — UAT & Pengujian Sistem Tahap 1</td>
                 <td class="amt">Rp 38.100.000</td>
             </tr>
             <tr>
                 <td class="pct">30%</td>
-                <td><strong>Termin 3</strong> — Go-Live Ekosistem Penuh</td>
+                <td><strong>Termin 3</strong> — Go-Live & Serah Terima Ekosistem Penuh</td>
                 <td class="amt">Rp 38.100.000</td>
             </tr>
         </table>
     </div>
 
-    <!-- 4. MAINTENANCE -->
+    <!-- 5. MAINTENANCE & SERVER -->
     <div class="card">
         <div class="card-head">
-            <span class="card-title"><span class="num">04</span> Maintenance & Server</span>
+            <span class="card-title"><span class="num">05</span> Maintenance & Opsi Server</span>
         </div>
+        <p style="font-size:0.8rem;color:var(--text-soft);margin-bottom:10px;">Dukungan teknis tahun ke-1 sudah termasuk dalam biaya di atas. Untuk tahun berikutnya tersedia 2 opsi:</p>
         <div class="maint-compact">
             <div class="maint-card">
-                <h5>Mandiri (Server Klien)</h5>
-                <p style="font-size:0.78rem;color:var(--text-soft);">Bug fixing, patch keamanan, & konsultasi teknis.</p>
+                <h5>1. Maintenance Mandiri</h5>
+                <p style="font-size:0.78rem;color:var(--text-soft);">Server disediakan oleh klien.</p>
+                <ul>
+                    <li>Bug fixing & patch keamanan</li>
+                    <li>Monitoring notifikasi error</li>
+                    <li>Respon max 1x24 jam kerja</li>
+                </ul>
                 <div class="prc">Rp 1.500.000 / bln</div>
             </div>
             <div class="maint-card active">
-                <h5>All-in (Server + App)</h5>
-                <p style="font-size:0.78rem;color:var(--text-soft);">Cloud server 7smarts, backup otomatis, & garansi prioritas.</p>
+                <h5>2. Paket All-in (Server + App)</h5>
+                <p style="font-size:0.78rem;color:var(--text-soft);">Terima beres total dikelola 7smarts.</p>
+                <ul>
+                    <li>Cloud Server & Backup Otomatis</li>
+                    <li>Bug fixing & patch keamanan</li>
+                    <li>Respon prioritas & 24/7 monitoring</li>
+                </ul>
                 <div class="prc">Rp 2.500.000 / bln</div>
             </div>
         </div>
-        <div class="quota-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Termasuk Kuota 10 Pekerjaan Minor / Bulan (tambah kolom, filter, format laporan, dll.)
+
+        <div class="quota-box">
+            <div class="quota-head">✦ Termasuk Kuota 10 Pekerjaan Minor / Bulan</div>
+            <p style="font-size:0.78rem;color:var(--text-soft);">Contoh item pekerjaan minor yang dapat diklaim setiap bulan:</p>
+            <div class="quota-grid">
+                <div class="q-item"><span>→</span> Tambah kolom tabel laporan</div>
+                <div class="q-item"><span>→</span> Ubah filter pencarian</div>
+                <div class="q-item"><span>→</span> Format ekspor PDF/Excel</div>
+                <div class="q-item"><span>→</span> Alert/Notifikasi menu baru</div>
+                <div class="q-item"><span>→</span> Ubah urutan/nama menu</div>
+                <div class="q-item"><span>→</span> Tweak rumus kalkulasi</div>
+                <div class="q-item"><span>→</span> Tambah aturan validasi input</div>
+                <div class="q-item"><span>→</span> Tambah role / hak akses user</div>
+            </div>
         </div>
     </div>
 
